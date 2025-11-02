@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>🎉 Happy Birthday - Special Celebration!</title>
+
+    <!-- Animation Libraries --><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <!-- Google Fonts --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* NEW COLOR PALETTE */
+        :root {
+            --primary-bg: #1A1A2E; /* Deeper, rich dark blue/purple */
+            --gradient-start: #3B006F; /* Darker purple for radial gradient */
+            --gradient-mid: #6A0DAD;   /* Mid-purple for radial gradient */
+            --accent-warm: #FFD700;    /* Bright Gold - Joy/Energy */
+            --accent-cool: #8A2BE2;    /* Blue Violet - Whimsy/Magic */
+            --accent-pop: #FF69B4;     /* Hot Pink - Festive Pop */
+            --text-light: #E0E0E0;     /* Soft White for general text */
+            --text-muted: rgba(255, 255, 255, 0.7); /* Muted white for labels */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--primary-bg);
+            color: var(--text-light);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Particles Background - UPDATED */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: radial-gradient(circle at 20% 50%, rgba(var(--accent-cool), 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(var(--accent-warm), 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 90%, rgba(var(--accent-pop), 0.2) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--primary-bg) 0%, #000000 100%); /* Slightly deeper gradient */
+        }
+
+        /* Loading Screen - UPDATED */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4A0070 0%, #2D004B 100%); /* Deeper loading screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        }
+
+        .loading-text {
+            font-size: 3rem;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            margin-bottom: 30px;
+            opacity: 0;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-pop), var(--accent-warm), var(--accent-cool)); /* New accent colors */
+            border-radius: 10px;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section - UPDATED */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(var(--accent-pop),0.2) 0%, transparent 70%); /* Uses new accent */
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .title {
+            font-size: 9rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--accent-pop), var(--accent-warm), var(--accent-cool), var(--accent-pop)); /* New accent colors */
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.05em;
+            filter: drop-shadow(0 0 30px rgba(var(--accent-pop),0.5)); /* Uses new accent */
+            line-height: 1.2;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .title-decoration {
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.3;
+        }
+
+        .decoration-left {
+            top: -40px;
+            left: -80px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .decoration-right {
+            bottom: -40px;
+            right: -80px;
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .subtitle {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-top: 30px;
+            opacity: 0;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .hero-cta {
+            margin-top: 40px;
+            margin-bottom: 80px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--accent-pop), var(--accent-warm)); /* New accent colors */
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            box-shadow: 0 10px 40px rgba(var(--accent-pop),0.4); /* Uses new accent */
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(var(--accent-pop),0.6); /* Uses new accent */
+        }
+
+        /* Countdown Section - UPDATED */
+        .countdown-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, var(--accent-pop), var(--accent-cool)); /* New accent colors */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+        }
+
+        .age-display {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .age-box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(var(--accent-pop),0.2), rgba(var(--accent-cool),0.2)); /* New accent colors */
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .age-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(var(--accent-pop),0.5); /* Uses new accent */
+            box-shadow: 0 30px 80px rgba(var(--accent-pop),0.4); /* Uses new accent */
+        }
+
+        .age-number {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-pop)); /* New accent colors */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .age-label {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Cake Section - UPDATED COLORS */
+        .cake-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 150px 50px 100px 50px;
+            position: relative;
+        }
+
+        .cake-spotlight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(var(--accent-warm),0.3) 0%, transparent 70%); /* Uses new accent */
+            pointer-events: none;
+        }
+
+        .cake-container {
+            position: relative;
+            opacity: 0;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .cake-platform {
+            width: 400px;
+            height: 25px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+            border-radius: 200px;
+            margin-top: 50;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6),
+                        inset 0 -3px 10px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .cake {
+            width: 350px;
+            height: 400px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .cake-layer {
+            width: 100%;
+            position: absolute;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .layer-1 {
+            bottom: 0;
+            height: 120px;
+            background: linear-gradient(135deg, #7B0099, #5A0077); /* Deeper purple base */
+            box-shadow: 0 15px 40px rgba(123,0,153,0.5),
+                        inset 0 -5px 20px rgba(0,0,0,0.2),
+                        0 5px 15px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .layer-1::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            top: 10px;
+            border-radius: 25px;
+        }
+
+        .layer-1::after {
+            content: '🎂';
+            position: absolute;
+            font-size: 2rem;
+            bottom: 40%;
+            left: 15%;
+            opacity: 0.6;
+        }
+
+        .layer-2 {
+            bottom: 110px;
+            height: 120px;
+            width: 85%;
+            left: 7.5%;
+            background: linear-gradient(135deg, #A820D8, #8A2BE2); /* Blue Violet */
+            box-shadow: 0 15px 40px rgba(168,32,216,0.5),
+                        inset 0 -5px 20px rgba(0,0,0,0.2),
+                        0 5px 15px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .layer-2::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            top: 10px;
+            border-radius: 25px;
+        }
+
+        .layer-2::after {
+            content: '🎉';
+            position: absolute;
+            font-size: 1.8rem;
+            bottom: 40%;
+            right: 15%;
+            opacity: 0.6;
+        }
+
+        .layer-3 {
+            bottom: 220px;
+            height: 100px;
+            width: 70%;
+            left: 15%;
+            background: linear-gradient(135deg, #FFD700, #FFC107); /* Gold Yellow */
+            box-shadow: 0 15px 40px rgba(255,215,0,0.5),
+                        inset 0 -5px 20px rgba(0,0,0,0.2),
+                        0 5px 15px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        /* Frosting on Top Layer */
+        .layer-3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .layer-3::after {
+            content: '✨';
+            position: absolute;
+            font-size: 1.5rem;
+            bottom: 30%;
+            left: 20%;
+            opacity: 0.6;
+        }
+
+        .candles-group {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+        }
+
+        .candle {
+            width: 18px;
+            height: 80px;
+            background: linear-gradient(180deg, #FF69B4, #E02070, #A00040); /* Hot Pink Candle */
+            border-radius: 8px 8px 3px 3px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+                        inset -2px 0 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .candle:hover {
+            transform: scale(1.1);
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 5px;
+            background: #2d3436;
+            border-radius: 2px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 35px;
+            background: radial-gradient(ellipse at center, #fff 0%, var(--accent-warm) 20%, #FF4500 60%, transparent 100%); /* Orange-Red Flame */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.15s infinite;
+            filter: blur(1px);
+        }
+
+        .flame::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 18px;
+            background: radial-gradient(ellipse at center, #fff 0%, var(--accent-warm) 70%, transparent 100%);
+            border-radius: 50%;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 1; }
+            50% { transform: translateX(-50%) scaleY(0.95); opacity: 0.9; }
+        }
+
+        .blow-instruction {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .cake-sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-warm); /* Sparkles match accent */
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-warm);
+            animation: sparkle 2s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Memory Lane Section - UPDATED */
+        .memory-section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, rgba(var(--accent-cool),0.1), rgba(var(--accent-pop),0.1)); /* New accent colors */
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 40px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            border-color: rgba(var(--accent-pop),0.5); /* Uses new accent */
+            box-shadow: 0 30px 60px rgba(var(--accent-pop),0.3); /* Uses new accent */
+        }
+
+        .memory-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .memory-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-warm); /* Uses new accent */
+        }
+
+        .memory-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Wishes Section - UPDATED */
+        .wishes-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 50px;
+        }
+
+        .wishes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin-top: 60px;
+        }
+
+        .wish-card {
+            background: linear-gradient(135deg, rgba(var(--accent-cool),0.15), rgba(var(--accent-pop),0.15)); /* New accent colors */
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 35px;
+            padding: 50px;
+            color: var(--text-light);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .wish-card:hover::before {
+            opacity: 1;
+        }
+
+        .wish-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 35px 80px rgba(var(--accent-pop),0.5); /* Uses new accent */
+            border-color: rgba(var(--accent-pop),0.5); /* Uses new accent */
+        }
+
+        .wish-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            display: block;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .wish-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* Celebration Section - UPDATED */
+        .celebration-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .celebration-circle {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--accent-pop),0.3), rgba(var(--accent-cool),0.2), transparent); /* New accent colors */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            opacity: 0;
+        }
+
+        .celebration-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-pop), var(--accent-warm), var(--accent-cool)); /* New accent colors */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 400px;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 3rem;
+            animation: floatAround 8s infinite ease-in-out;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform: translate(0, -100px) rotate(180deg); }
+            75% { transform: translate(-50px, -50px) rotate(270deg); }
+        }
+
+        /* Final Section - UPDATED */
+        .final-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .final-message {
+            font-size: 4rem;
+            color: var(--text-light);
+            text-align: center;
+            opacity: 0;
+            max-width: 900px;
+            line-height: 1.6;
+            font-weight: 300;
+            text-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+
+        .final-signature {
+            font-size: 2.5rem;
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-warm); /* Uses new accent */
+            margin-top: 50px;
+            opacity: 0;
+        }
+
+        /* Floating Elements - Balloons UPDATED */
+        .balloon {
+            position: absolute;
+            width: 90px;
+            height: 110px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2),
+                        0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .balloon:hover {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.6), transparent);
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 10px;
+            background: inherit;
+            border-radius: 50%;
+            filter: brightness(0.8);
+        }
+
+        /* Secret Button - UPDATED */
+        .secret-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-pop), var(--accent-warm)); /* New accent colors */
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(var(--accent-pop),0.5); /* Uses new accent */
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secret-button:hover {
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 15px 50px rgba(var(--accent-pop),0.7); /* Uses new accent */
+        }
+
+        /* Surprise Modal - UPDATED */
+        .surprise-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .surprise-content {
+            background: linear-gradient(135deg, rgba(var(--accent-cool),0.9), rgba(var(--gradient-start),0.9)); /* New accent colors */
+            backdrop-filter: blur(20px);
+            padding: 70px;
+            border-radius: 40px;
+            text-align: center;
+            max-width: 700px;
+            color: var(--text-light);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .surprise-content h2 {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .surprise-content p {
+            font-size: 1.6rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        .close-modal {
+            margin-top: 40px;
+            padding: 18px 50px;
+            background: white;
+            color: #667eea; /* This color could also be mapped to a new var if needed */
+            border: none;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.4);
+        }
+
+        /* Music Toggle - UPDATED */
+        .music-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.15);
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(var(--accent-pop),0.5); /* Uses new accent */
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title { font-size: 4.5rem; }
+            .subtitle { font-size: 1.8rem; }
+            .section-title { font-size: 2.5rem; }
+            .wish-card { padding: 35px; }
+            .wishes-container { grid-template-columns: 1fr; gap: 30px; }
+            .memory-grid { grid-template-columns: 1fr; }
+            .final-message { font-size: 2.0rem; }
+            .age-box { width: 150px; height: 150px; }
+            .age-number { font-size: 3.5rem; }
+            .cake { width: 280px; height: 350px; }
+            .celebration-circle { width: 350px; height: 350px; }
+            .celebration-text { font-size: 2.5rem; }
+            .hero-cta { margin-bottom: 60px; }
+            .blow-instruction { margin-top: 30px; font-size: 1.5rem;}
+        }
+        /* --- Mobile responsiveness + balloon sizing (drop-in overrides) --- */
+        :root {
+        --safe-x: 16px;
+        }
+
+        .container {
+        max-width: 100%;
+        padding-left: var(--safe-x);
+        padding-right: var(--safe-x);
+        }
+
+        .hero {
+        min-height: 100svh;
+        padding-top: clamp(48px, 8vh, 96px);
+        padding-bottom: clamp(56px, 9vh, 112px);
+        }
+
+        .title-container {
+        position: relative; /* ensure absolute children anchor here */
+        display: inline-block;
+        max-width: min(92vw, 900px);
+        }
+
+        .title {
+        font-size: clamp(2.4rem, 10vw, 6rem);
+        line-height: 1.05;
+        word-break: break-word;
+        }
+
+        .subtitle {
+        font-size: clamp(1.1rem, 3.8vw, 1.8rem);
+        }
+
+        .hero-cta {
+        padding: 14px clamp(20px, 6vw, 40px);
+        font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+        }
+
+        .balloon {
+        width: clamp(44px, 12vw, 90px);
+        height: clamp(54px, 14vw, 110px);
+        z-index: 6;
+        pointer-events: auto;
+        }
+
+        @media (max-width: 480px) {
+        .wishes-container,
+        .memory-grid {
+            gap: 20px;
+        }
+        .age-box {
+            width: 140px;
+            height: 140px;
+        }
+        .cake {
+            width: 260px;
+            height: 320px;
+        }
+        }
+        /* From Uiverse.io by aadium */ 
+        .card {
+        width: 250px;
+        height: 320px;
+        padding: 5px;
+        background-image: linear-gradient(#ca1eb3, #FD2E24, #FFD701 70%);
+        }
+
+        .card__content {
+        background-color: #212121cf;
+        backdrop-filter: blur(50px);
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        }
+
+        .card-details {
+        height: 100%;
+        gap: .5em;
+        display: grid;
+        place-content: center;
+        }
+
+        .text-body {
+        margin-top: -35px;
+        color: #ff8d79;
+        text-align: center;
+        }
+
+        .text-title {
+        margin-top: -125px;
+        color: #ff4d7d;
+        font-size: 1.75em;
+        font-weight: bold;
+        text-align: center;
+        }
+
+        .sunsetsvg {
+        width: 313px;
+        margin-left: -51.9px;
+        margin-top: -165px;
+        fill: black;
+        }
+
+        #sun {
+        fill: url(#MyGradient);
+        }
+
+        /* Update the existing .flame rule */
+        .flame {
+            /* ... existing properties ... */
+            /* Remove the 'animation' property from here */
+            animation: flicker 0.15s infinite; /* <-- REMOVE THIS LINE */
+            /* ... existing properties ... */
+        }
+
+        /* ADD THIS NEW RULE to hide the flame */
+        .flame.blown-out {
+            opacity: 0 !important;
+            transform: translate(-50%, -50%) scale(0) !important;
+        }
+        /* Mobile-only spacing between title and flames */
+        @media (max-width: 480px) {
+        .cake-section .section-title {
+            /* Increase gap below "Make a Wish!" */
+            margin-bottom: 72px; /* try 56–96px to taste */
+        }
+        .cake-section .cake-container {
+            /* Optional tiny nudge for fine control */
+            margin-top: 12px;
+        }
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        .hero-section {
+            width: 100vw;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden; /* Contain child elements */
+            margin: 0;
+            padding: 0;
+        }
+        .decorative-flower {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .particles {
+            width: 100%;
+            max-width: 100vw;
+            overflow: hidden;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <!-- Loading Screen --><div class="loading-screen">
+        <div class="loading-text"> Preparing  Something Special...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Particles Background --><div id="particles-js"></div>
+
+    <!-- Music Toggle --><div class="music-toggle" title="Toggle Music">🎵</div>
+
+    <!-- Secret Button --><button class="secret-button" title="Click for a surprise!">🎁</button>
+
+    <!-- Main Container --><div class="container">
+        <!-- Hero Section --><section class="hero">
+            <div class="title-container">
+                <span class="title-decoration decoration-left">✨</span>
+                <h1 class="title">HAPPY<br>BIRTHDAY!<br>Mahera Bin</h1>
+                <span class="title-decoration decoration-right">🎉</span>
+            </div>
+            <p class="subtitle">Today is all about YOU! 💖</p>
+            <button class="hero-cta">Let's Celebrate! 🎊</button>
+            <p class="subtitle">Click the Balloons to pop them all 💅</p>
+        </section>
+
+        <!-- Countdown Section --><section class="countdown-section">
+            <h2 class="section-title">Time Flies When You're Awesome!</h2>
+            <div class="age-display">
+                <div class="age-box">
+                    <div class="age-number" id="years">18</div>
+                    <div class="age-label">Years</div>
+                </div>
+                <div class="age-box">
+                    <div class="age-number" id="months">216</div>
+                    <div class="age-label">Months</div>
+                </div>
+                <div class="age-box">
+                    <div class="age-number" id="days">6570</div>
+                    <div class="age-label">Days</div>
+                </div>
+                <div class="age-box">
+                    <div class="age-number">&infin;</div>
+                    <div class="age-label">Memories</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cake Section --><section class="cake-section">
+            <div class="cake-spotlight"></div>
+            <h2 class="section-title">Make a Wish! ✨</h2>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-layer layer-1"></div>
+                    <div class="cake-layer layer-2"></div>
+                    <div class="cake-layer layer-3"></div>
+                    <div class="candles-group">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                    </div>
+                </div>
+                <div class="cake-platform"></div>
+            </div>
+            <p class="blow-instruction">💨 Click any candle to blow it out! 🎂</p>
+        </section>
+
+        <!-- Memory Lane Section --><section class="memory-section">
+            <h2 class="section-title">Celebrating YOU!</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <span class="memory-icon">🌟</span>
+                    <h3 class="memory-title">Your Sparkle</h3>
+                    <p class="memory-text">Apko hona hi kafi hai silence ko bhi masti se bhar Dene k liye</p>
+                </div>
+                <div class="memory-card">
+                    <span class="memory-icon">💪</span>
+                    <h3 class="memory-title">Your Strength</h3>
+                    <p class="memory-text">Jab tum ladti ho to kuch aisa nahi jo rok sake apko aksar gir kr bhi uth jati h aap</p>
+                </div>
+                <div class="memory-card">
+                    <span class="memory-icon">❤️</span>
+                    <h3 class="memory-title">Your Heart</h3>
+                    <p class="memory-text">Khoobsurat bada h dil apka k aap jo dil se kro vo khoobsurati se na ho aise ho nahi sakta</p>
+                </div>
+                <div class="memory-card">
+                    <span class="memory-icon">🎨</span>
+                    <h3 class="memory-title">Your Creativity</h3>
+                    <p class="memory-text">Tum jo hath lagao na-jane kaise apne aap khoobsurat ban jata hai</p>
+                </div>
+                <div class="memory-card">
+                    <span class="memory-icon">😂</span>
+                    <h3 class="memory-title">Your Humor</h3>
+                    <p class="memory-text">Jab aap bolna shuru kro to na bolne wala bhi hasde aur bolne wale chup hojaye</p>
+                </div>
+                <div class="memory-card">
+                    <span class="memory-icon">🚀</span>
+                    <h3 class="memory-title">Your Dreams</h3>
+                    <p class="memory-text">Sapne bade hai apke kuch to chatpate mazedar bhi hoge bas dua k sab pure hoge</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishes Section --><section class="wishes-section">
+            <h2 class="section-title">Birthday Wishes For You! 🎁</h2>
+            <div class="wishes-container">
+                <div class="wish-card">
+                    <span class="wish-icon">🌈</span>
+                    <p class="wish-text">May your year be painted with all the colors of joy, success, and endless adventures!</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">✨</span>
+                    <p class="wish-text">Wishing you magical moments and dreams that come true in the most spectacular ways!</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🎯</span>
+                    <p class="wish-text">May you hit every goal, exceed every expectation, and celebrate every victory this year!</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">💖</span>
+                    <p class="wish-text">Sending you love, laughter, and happiness multiplied by infinity and beyond!</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🌟</span>
+                    <p class="wish-text">Keep shining bright! The world needs your light, your energy, and your amazing spirit!</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🎊</span>
+                    <p class="wish-text">Here's to 365 days of incredible memories, boundless joy, and unforgettable moments!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Celebration Section --><section class="celebration-section">
+            <div class="celebration-circle">
+                <div class="celebration-text">YOU DESERVE ALL THE HAPPINESS!</div>
+                <span class="floating-emoji" style="top: 10%; left: 10%;">🎈</span>
+                <span class="floating-emoji" style="top: 20%; right: 15%; animation-delay: 1s;">🎉</span>
+                <span class="floating-emoji" style="bottom: 15%; left: 15%; animation-delay: 2s;">🎁</span>
+                <span class="floating-emoji" style="bottom: 20%; right: 10%; animation-delay: 1.5s;">✨</span>
+            </div>
+            <!-- From Uiverse.io by aadium --> 
+            <div class="card">
+            <div class="card__content">
+                <div class="card-details">
+                <p class="text-title">Savor the sunset</p>
+                <p class="text-body">Enjoy life's little beauties</p>
+                </div>
+                <svg class="sunsetsvg" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1312.000000 876.000000" preserveAspectRatio="xMidYMid meet">
+
+                <defs>
+                    <linearGradient id="MyGradient" gradientTransform="rotate(90)">
+                    <stop offset="5%" stop-color="#ff632a"></stop>
+                    <stop offset="95%" stop-color="#ffd900"></stop>
+                    </linearGradient>
+
+                </defs>
+            <g transform="translate(0.000000,876.000000) scale(0.100000,-0.100000)" stroke="none">
+            <path d="M12900 7865 c0 -12 19 -15 110 -15 91 0 110 3 110 15 0 12 -19 15
+            -110 15 -91 0 -110 -3 -110 -15z"></path>
+            <path d="M10710 7525 c-148 -33 -310 -142 -413 -277 -65 -86 -101 -154 -137
+            -261 l-27 -79 -6 76 c-9 101 -23 156 -62 242 -83 183 -220 240 -381 160 -74
+            -37 -149 -99 -140 -115 4 -5 22 -5 48 2 24 6 61 11 83 11 l40 1 3 -45 c6 -100
+            15 -107 79 -60 22 16 42 27 45 24 3 -3 3 -33 1 -67 l-5 -62 43 -15 c33 -11 50
+            -26 71 -60 26 -43 82 -214 75 -233 -1 -5 -20 16 -40 46 -21 31 -77 93 -125
+            139 -200 193 -380 279 -517 249 -130 -29 -289 -177 -370 -346 -41 -84 -82
+            -211 -72 -222 3 -2 27 32 53 77 50 84 169 210 198 210 21 0 20 -25 -4 -102
+            -22 -71 -25 -98 -9 -98 5 0 62 49 125 110 96 92 173 150 199 150 12 0 3 -30
+            -20 -64 -14 -20 -25 -40 -25 -44 0 -4 60 -7 133 -7 l133 0 74 -37 c71 -36 170
+            -109 125 -93 -154 57 -197 68 -281 72 -76 5 -102 2 -155 -16 -112 -37 -227
+            -131 -271 -220 -20 -40 -23 -65 -26 -186 -3 -125 8 -248 24 -264 10 -11 22 22
+            29 82 8 75 47 200 77 247 l22 35 7 -30 c4 -16 7 -53 8 -82 0 -28 5 -54 10 -57
+            14 -9 41 70 53 158 6 44 14 85 18 90 5 4 16 -8 25 -28 10 -20 23 -36 30 -36 7
+            0 23 21 35 46 14 27 43 62 73 86 51 40 69 39 47 -2 -6 -12 -10 -24 -7 -26 3
+            -3 32 2 65 10 34 9 97 16 143 15 l84 -1 -73 -13 c-106 -20 -174 -55 -246 -128
+            -93 -92 -138 -192 -155 -344 -9 -87 0 -220 20 -281 19 -59 56 -128 90 -167 33
+            -37 66 -48 54 -17 -18 48 -35 132 -35 178 0 98 19 108 76 39 20 -25 40 -42 44
+            -38 4 4 3 42 -3 83 -12 84 1 221 26 280 l14 35 8 -40 c13 -74 25 -110 47 -145
+            l22 -35 13 85 c13 84 39 178 53 193 4 4 10 -30 13 -76 6 -87 35 -190 67 -242
+            l19 -29 -1 119 c0 103 3 131 25 200 31 94 72 162 119 199 55 41 46 52 118
+            -147 78 -214 160 -553 199 -822 49 -335 55 -441 55 -880 0 -368 -3 -446 -23
+            -630 -20 -187 -86 -624 -96 -634 -2 -2 -37 5 -77 15 -107 28 -277 26 -340 -3
+            -76 -35 -113 -69 -177 -163 -57 -83 -97 -119 -148 -134 -19 -6 -23 -2 -27 26
+            -67 410 -120 611 -247 934 -88 224 -265 573 -373 737 -26 38 -6 34 52 -12 56
+            -44 122 -137 148 -208 29 -79 37 -75 32 12 -3 50 -15 108 -31 154 -15 41 -25
+            77 -23 79 6 5 97 -106 125 -152 44 -71 52 -9 16 134 -6 22 -1 20 33 -17 44
+            -48 92 -134 117 -211 10 -29 20 -50 24 -47 3 4 13 27 22 53 8 25 20 47 27 50
+            16 5 62 -91 76 -160 6 -32 16 -60 21 -61 33 -7 46 174 19 264 -24 82 -89 199
+            -143 260 -114 126 -287 179 -431 129 -53 -18 -54 -18 -32 0 27 23 124 60 155
+            60 12 0 29 4 37 10 12 7 11 12 -5 31 l-20 22 44 -7 c49 -7 96 -29 128 -59 25
+            -23 30 -17 35 43 l3 35 42 -61 c51 -74 106 -131 111 -115 2 6 -6 36 -19 66
+            -24 58 -22 73 8 57 26 -14 122 -119 160 -175 18 -26 37 -47 42 -47 22 0 -49
+            193 -102 276 -52 82 -119 123 -235 144 -141 25 -249 -16 -380 -143 l-85 -82
+            34 64 c56 107 141 177 257 212 23 7 41 16 40 20 -2 4 -18 18 -37 31 -83 56 4
+            55 178 -2 68 -22 127 -40 132 -40 20 0 6 25 -41 77 -60 65 -65 88 -17 80 55
+            -9 142 -46 207 -88 34 -22 65 -37 68 -34 4 3 -32 43 -78 88 -61 59 -106 93
+            -160 119 -149 74 -294 87 -384 34 -119 -70 -252 -308 -290 -521 l-13 -70 -14
+            60 c-7 33 -14 95 -14 137 0 71 2 79 29 107 l29 30 -27 45 c-14 24 -26 47 -26
+            51 0 3 22 3 49 -1 27 -3 51 -2 54 3 3 5 -3 28 -14 52 -10 24 -19 49 -19 56 0
+            14 39 29 103 41 83 14 -4 52 -123 53 -166 2 -258 -129 -230 -325 9 -68 37
+            -160 61 -206 7 -12 -27 14 -75 60 -141 132 -306 202 -481 202 -94 0 -157 -15
+            -240 -58 -68 -35 -133 -86 -123 -97 4 -4 44 2 90 14 102 26 232 38 242 23 4
+            -6 -16 -25 -46 -45 -61 -39 -89 -67 -67 -67 8 0 60 10 116 22 57 12 106 18
+            110 15 3 -4 -6 -20 -21 -36 l-28 -29 93 0 c114 1 195 -19 302 -74 84 -44 99
+            -61 24 -28 -96 43 -196 61 -327 62 -196 1 -340 -32 -453 -106 -60 -39 -122
+            -95 -114 -102 3 -3 28 3 56 12 27 10 53 15 57 11 4 -4 -15 -33 -43 -64 -61
+            -71 -81 -107 -93 -175 -11 -57 -4 -139 14 -164 11 -14 17 -3 44 68 35 93 82
+            151 116 146 15 -2 25 -16 37 -50 8 -26 18 -50 21 -54 4 -3 12 21 18 53 13 62
+            35 113 49 113 5 0 21 -16 35 -35 15 -19 30 -35 34 -35 4 0 24 26 44 58 27 42
+            50 66 87 85 65 36 189 67 265 67 l61 0 -57 -24 c-121 -50 -246 -164 -303 -276
+            -42 -83 -59 -158 -58 -265 0 -88 5 -113 37 -210 47 -138 93 -222 161 -288 53
+            -52 146 -112 166 -105 5 2 -8 28 -29 58 -49 68 -74 117 -70 135 2 10 16 8 62
+            -11 32 -14 67 -24 79 -22 18 3 13 12 -42 78 -83 98 -94 116 -87 136 5 14 16
+            16 64 11 32 -4 64 -2 72 4 12 8 9 14 -20 37 -77 60 -119 105 -146 157 -16 29
+            -26 56 -23 60 3 3 30 -5 60 -19 82 -36 99 -40 99 -23 0 8 -25 57 -55 108 -30
+            51 -55 97 -55 101 0 15 32 8 75 -18 43 -25 65 -25 65 -1 1 52 111 202 170 231
+            36 19 88 27 95 16 3 -6 2 -10 -4 -10 -6 0 -39 -27 -74 -60 -183 -171 -179
+            -476 9 -679 77 -84 232 -159 179 -88 -70 96 -108 177 -121 257 -8 48 1 50 51
+            10 71 -57 70 -41 -11 129 -76 160 -72 178 22 90 46 -45 54 -49 54 -30 0 12
+            -13 51 -30 88 -16 36 -30 67 -30 70 0 2 11 -4 25 -13 31 -20 32 -9 9 59 -8 25
+            -14 56 -12 69 4 28 94 -184 180 -422 154 -426 238 -834 238 -1156 l0 -121 -67
+            -22 c-95 -31 -167 -84 -247 -182 -97 -119 -97 -119 -241 -119 -151 -1 -250
+            -18 -351 -62 -43 -19 -104 -41 -134 -47 -30 -7 -95 -26 -145 -41 -49 -16 -119
+            -34 -155 -40 -79 -13 -130 -29 -130 -40 0 -4 19 -11 43 -14 80 -12 602 -26
+            967 -26 622 0 1380 -39 1380 -71 0 -5 -73 -9 -162 -9 -241 0 -336 -17 -478
+            -85 -127 -61 -149 -67 -330 -90 -165 -21 -227 -38 -335 -90 -62 -30 -118 -48
+            -178 -59 -52 -9 -125 -31 -180 -56 -104 -45 -135 -51 -392 -79 -723 -79 -1917
+            -102 -2627 -50 -182 13 -181 13 -279 151 -98 138 -124 153 -314 183 -127 19
+            -218 41 -256 60 -15 8 -44 34 -65 57 -109 121 -182 184 -249 215 -39 18 -87
+            35 -107 38 l-36 6 -7 76 c-21 221 31 638 126 1003 73 279 260 812 267 760 2
+            -13 -4 -50 -14 -82 -9 -32 -14 -61 -11 -64 4 -4 18 1 32 10 30 20 31 16 6 -32
+            -25 -50 -54 -142 -47 -149 3 -3 29 20 59 51 59 62 91 74 77 29 -4 -16 -31 -80
+            -59 -143 -47 -107 -60 -150 -45 -150 4 0 24 16 45 35 54 48 63 46 55 -16 -10
+            -75 -46 -166 -94 -236 -23 -34 -38 -64 -34 -67 20 -12 118 48 176 107 111 113
+            161 239 159 402 -1 185 -68 305 -223 402 l-35 22 39 1 c22 0 59 -9 82 -21 63
+            -30 147 -126 175 -198 27 -69 35 -72 94 -36 82 51 83 25 5 -114 -28 -48 -50
+            -90 -50 -94 0 -15 44 -5 100 23 33 17 62 30 65 30 3 0 5 -11 5 -23 0 -40 -73
+            -140 -139 -192 -34 -27 -60 -53 -58 -59 3 -7 32 -10 80 -8 75 4 77 3 77 -20 0
+            -15 -29 -60 -75 -117 -41 -52 -75 -98 -75 -102 0 -17 35 -9 98 21 35 17 66 30
+            68 30 20 0 -17 -84 -74 -168 -19 -28 -33 -55 -30 -58 9 -9 78 30 135 75 92 74
+            173 220 219 396 21 83 24 267 5 335 -23 84 -75 173 -144 246 -81 87 -157 139
+            -257 177 l-75 28 100 -6 c112 -5 229 -34 292 -71 26 -15 59 -48 84 -85 44 -66
+            54 -66 85 -7 8 15 20 28 27 28 19 0 43 -48 58 -113 7 -32 15 -60 19 -62 4 -2
+            14 23 24 55 14 52 19 60 41 60 38 0 89 -62 125 -151 18 -44 36 -82 40 -84 17
+            -11 33 69 27 136 -8 91 -33 145 -106 223 -81 87 -81 99 -1 71 72 -26 79 -18
+            25 31 -27 25 -86 63 -130 84 -111 54 -218 74 -390 74 -159 1 -239 -14 -375
+            -69 -91 -37 -82 -21 20 34 101 54 184 75 297 76 57 0 103 3 103 6 0 3 -14 15
+            -30 27 -62 46 -30 52 120 23 52 -11 99 -16 103 -11 9 8 -19 32 -87 73 -26 15
+            -44 32 -41 37 10 16 133 11 235 -10 52 -11 103 -20 114 -20 16 0 17 2 5 17
+            -26 31 -130 92 -197 115 -54 18 -88 23 -172 22 -130 0 -203 -18 -330 -81 -77
+            -39 -112 -64 -188 -138 -51 -50 -90 -83 -86 -75 48 125 65 232 53 335 -13 106
+            -62 176 -149 213 -45 18 -188 12 -244 -12 -49 -20 -40 -31 39 -45 85 -16 92
+            -26 64 -90 -13 -31 -18 -56 -13 -61 5 -5 30 -5 58 1 27 5 51 7 53 5 3 -2 -7
+            -22 -21 -45 -27 -41 -34 -81 -16 -81 6 0 19 -15 30 -32 24 -39 26 -135 7 -238
+            l-13 -65 -13 65 c-18 94 -83 253 -140 346 -108 174 -197 240 -326 238 -121 -2
+            -242 -48 -363 -139 -61 -46 -162 -155 -162 -175 0 -5 35 15 79 44 73 50 161
+            90 223 103 43 9 36 -16 -28 -94 -42 -51 -52 -69 -40 -71 9 -2 83 19 164 47
+            140 49 212 62 212 41 0 -5 -11 -17 -25 -27 -77 -54 -77 -49 0 -72 118 -35 207
+            -104 266 -206 16 -27 29 -53 29 -57 0 -4 -30 22 -66 56 -121 115 -212 158
+            -339 157 -147 0 -261 -52 -320 -146 -58 -92 -142 -325 -117 -325 5 0 34 38 66
+            85 32 46 80 105 108 130 73 66 82 61 48 -27 -26 -70 -26 -82 1 -68 11 6 46 50
+            77 98 56 86 56 86 63 55 13 -66 17 -69 47 -40 34 33 108 66 146 67 l29 0 -23
+            -24 -23 -25 24 -5 c13 -3 48 -10 77 -15 50 -10 158 -58 150 -66 -2 -2 -24 3
+            -48 12 -111 39 -269 9 -379 -72 -93 -69 -192 -223 -225 -352 -27 -103 -16
+            -264 20 -293 10 -9 14 -4 19 27 19 119 55 208 84 208 8 0 22 -22 31 -50 9 -27
+            20 -49 25 -48 5 1 16 26 25 55 30 97 123 258 149 258 5 0 3 -24 -5 -52 -16
+            -60 -18 -134 -5 -142 5 -3 21 14 35 39 28 47 126 169 131 163 2 -2 -10 -41
+            -26 -88 -22 -66 -29 -103 -29 -168 0 -53 4 -81 10 -77 6 3 10 14 10 24 0 9 17
+            53 38 97 41 83 118 176 173 208 l32 19 -42 -74 c-242 -428 -428 -908 -515
+            -1334 -15 -71 -29 -140 -32 -152 l-4 -23 -65 25 c-74 27 -119 58 -220 145 -38
+            33 -95 73 -125 88 -51 25 -63 27 -175 26 -72 -1 -162 -10 -225 -22 -58 -11
+            -106 -19 -108 -17 -5 4 -34 164 -57 320 -53 362 -75 689 -70 1080 8 599 86
+            1107 242 1577 l45 138 30 -18 c120 -69 205 -276 197 -476 -2 -47 -1 -86 2 -86
+            10 0 47 90 63 152 7 29 17 91 21 138 l8 85 20 -44 c10 -25 28 -88 39 -140 10
+            -53 20 -100 22 -106 7 -21 58 107 63 160 3 30 9 55 14 55 12 0 37 -89 49 -177
+            10 -73 8 -144 -6 -210 -7 -36 15 -27 58 22 22 25 46 45 53 45 29 0 34 -113 9
+            -221 -9 -39 -13 -73 -10 -77 12 -12 78 65 105 123 44 93 56 157 55 290 -2 205
+            -55 346 -172 462 -77 76 -160 118 -268 135 l-79 12 58 9 c42 6 81 4 141 -7
+            111 -21 109 -22 91 15 -21 41 -14 46 29 20 45 -28 105 -95 118 -132 14 -41 33
+            -36 58 16 12 25 23 45 25 45 1 0 10 -44 20 -97 18 -102 46 -183 64 -183 7 0
+            11 30 11 78 0 42 4 83 9 90 20 32 90 -133 116 -274 9 -49 21 -93 25 -98 17
+            -18 31 80 31 216 0 77 -3 156 -7 176 -12 68 -53 139 -109 191 -179 163 -379
+            183 -650 66 l-60 -25 45 39 c108 96 231 137 383 127 53 -3 97 -4 97 -2 0 2
+            -16 28 -36 57 -35 52 -35 54 -14 57 29 5 104 -47 219 -153 97 -89 128 -111
+            139 -101 3 4 -6 44 -21 89 -26 79 -34 127 -22 127 38 0 181 -143 241 -239 46
+            -77 56 -62 23 37 -58 176 -162 316 -312 421 -163 112 -320 93 -532 -66 -98
+            -74 -246 -226 -304 -313 -23 -36 -40 -56 -38 -45 3 11 15 61 27 110 30 128 63
+            184 123 213 l49 23 -7 72 -7 71 26 -17 c14 -9 37 -24 51 -33 41 -27 54 -13 57
+            63 4 80 7 82 110 63 38 -7 71 -10 76 -6 12 13 -76 84 -147 119 -55 27 -77 32
+            -136 32 -49 0 -82 -6 -110 -20 -119 -59 -200 -222 -220 -445 -4 -47 -10 -78
+            -13 -70 -101 321 -353 566 -634 616 -101 18 -224 8 -313 -26 -42 -16 -21 -27
+            85 -44 52 -9 120 -23 150 -32 70 -21 152 -62 146 -73 -3 -5 -32 -12 -63 -16
+            -112 -13 -162 -34 -115 -49 9 -3 64 -15 121 -26 58 -12 116 -27 130 -34 23
+            -13 24 -14 5 -24 -10 -5 -34 -13 -52 -17 -17 -3 -32 -10 -32 -14 0 -4 26 -15
+            58 -25 104 -32 181 -83 282 -185 131 -133 167 -198 44 -81 -106 102 -222 176
+            -360 230 -203 79 -359 103 -511 76 -147 -25 -223 -66 -124 -66 50 0 101 -10
+            101 -21 0 -4 -47 -30 -104 -58 -139 -67 -191 -126 -231 -264 -28 -98 -15 -101
+            73 -15 83 82 147 121 190 116 27 -3 27 -3 25 -83 l-1 -80 26 35 c49 63 121
+            132 134 128 7 -3 17 -28 23 -56 5 -28 13 -53 16 -56 3 -4 33 11 66 33 88 57
+            120 65 237 58 103 -6 187 -26 288 -68 l56 -24 -103 3 c-74 3 -126 -1 -180 -13
+            -96 -21 -253 -99 -323 -160 -158 -140 -242 -360 -242 -632 0 -148 18 -232 70
+            -330 43 -83 104 -162 115 -151 4 4 0 37 -8 75 -22 94 -30 185 -18 202 7 11 23
+            0 73 -52 97 -102 108 -88 59 67 -16 50 -32 110 -36 133 -9 60 10 65 91 25 66
+            -33 94 -39 94 -22 0 5 -20 48 -44 95 -54 105 -80 228 -56 265 8 12 21 2 71
+            -52 91 -101 102 -94 83 52 -26 194 -16 219 52 125 21 -30 45 -55 53 -55 8 0
+            40 24 71 54 31 29 74 63 95 74 53 26 141 52 180 52 l32 0 -54 -147 c-199 -543
+            -326 -1145 -373 -1765 -13 -177 -13 -690 0 -867 11 -143 47 -456 56 -480 7
+            -22 -15 -31 -76 -31 -59 0 -80 10 -220 107 -101 70 -185 68 -331 -5 -118 -59
+            -188 -110 -281 -203 l-88 -86 0 -807 0 -806 5030 0 5030 0 0 883 0 883 -97 22
+            c-92 21 -106 28 -231 111 -146 97 -177 112 -302 136 -47 9 -120 30 -164 47
+            l-79 30 6 52 c3 28 13 105 21 171 36 282 48 746 26 1045 -46 632 -190 1266
+            -414 1824 -31 76 -56 141 -56 144 0 3 28 2 62 -2 80 -8 174 -52 236 -110 27
+            -25 53 -46 58 -46 5 1 25 24 44 52 59 88 64 81 56 -80 -4 -86 -3 -143 3 -146
+            5 -3 36 24 69 60 35 40 64 64 71 60 28 -17 4 -147 -46 -254 -48 -104 -44 -110
+            45 -67 40 20 77 33 82 30 17 -10 11 -53 -21 -173 -19 -71 -27 -118 -21 -124 6
+            -6 34 18 75 63 53 56 68 68 73 55 6 -16 2 -97 -12 -216 l-6 -55 20 20 c34 32
+            89 132 114 204 20 58 23 84 22 216 -1 127 -5 165 -27 247 -37 138 -86 227
+            -177 318 -86 87 -196 148 -315 176 -71 16 -221 22 -266 10 -13 -4 -7 3 16 15
+            109 60 302 99 390 79 26 -6 71 -26 101 -45 30 -19 58 -35 63 -35 10 0 21 35
+            21 72 0 15 5 30 10 33 14 9 57 -20 89 -59 14 -16 36 -42 49 -56 l23 -25 -7 65
+            c-5 52 -3 69 9 79 35 28 134 -25 226 -123 19 -20 39 -36 44 -36 17 0 -1 81
+            -32 145 -37 75 -93 128 -170 162 -31 13 -74 32 -96 43 l-40 18 28 11 c16 6 46
+            11 67 11 21 0 42 5 45 10 16 26 -177 64 -285 56 -89 -7 -226 -43 -328 -85
+            -130 -54 -230 -120 -329 -217 -80 -79 -90 -86 -71 -51 34 59 151 180 219 226
+            33 22 87 50 120 62 32 12 59 25 59 29 0 5 -17 12 -37 17 -78 18 -39 42 130 78
+            42 10 80 21 83 26 8 13 -33 26 -109 34 -37 4 -67 11 -67 16 0 26 122 74 258
+            103 57 11 103 26 103 31 1 32 -210 53 -311 30z"></path>
+            <path d="M7336 5901 c-29 -20 -72 -78 -64 -87 3 -2 25 7 49 21 77 43 140 29
+            199 -45 17 -22 35 -40 39 -40 4 0 15 18 24 39 18 40 45 63 84 73 33 9 108 -11
+            149 -38 44 -30 52 -27 23 10 -28 36 -117 86 -153 86 -16 0 -54 -12 -86 -26
+            l-58 -26 -48 26 c-59 31 -117 34 -158 7z"></path>
+            <path d="M5816 5741 c-28 -19 -73 -78 -64 -86 2 -2 27 8 56 22 71 35 108 27
+            178 -39 30 -28 55 -49 57 -47 1 2 11 21 21 42 39 76 131 88 226 29 28 -17 50
+            -27 50 -23 0 5 -23 30 -51 55 -79 71 -135 78 -227 30 -36 -19 -44 -18 -98 11
+            -56 30 -108 32 -148 6z"></path>
+            <path d="M6808 5354 c-27 -14 -82 -84 -73 -92 2 -2 29 8 59 23 77 38 115 30
+            179 -36 26 -27 49 -49 52 -49 2 0 13 17 24 38 25 49 60 72 108 72 46 -1 107
+            -22 134 -46 10 -9 22 -14 26 -10 12 12 -59 74 -109 96 -55 24 -85 21 -155 -13
+            l-42 -21 -53 27 c-59 30 -109 34 -150 11z"></path>
+            <path d="M12543 4303 c48 -2 126 -2 175 0 48 1 8 3 -88 3 -96 0 -136 -2 -87
+            -3z"></path>
+            <path d="M12893 4303 c15 -2 39 -2 55 0 15 2 2 4 -28 4 -30 0 -43 -2 -27 -4z"></path>
+            <path d="M6370 3905 c-52 -7 -135 -25 -184 -40 -88 -25 -236 -83 -236 -91 0
+            -2 276 -4 613 -4 l612 1 -38 20 c-54 28 -229 85 -322 104 -111 23 -327 28
+            -445 10z" id="sun"></path>
+            <path d="M5813 3697 c-126 -85 -205 -77 746 -77 945 0 874 -7 750 75 l-68 45
+            -683 -1 -683 0 -62 -42z" id="sun"></path>
+            <path d="M5575 3500 l-39 -40 1024 0 1024 0 -39 40 -39 40 -946 0 -946 0 -39
+            -40z" id="sun"></path>
+            <path d="M5441 3338 c-17 -23 -31 -46 -31 -50 0 -4 518 -8 1150 -8 633 0 1150
+            4 1150 8 0 4 -14 27 -31 50 l-31 42 -1088 0 -1088 0 -31 -42z" id="sun"></path>
+            <path d="M5332 3155 c-7 -14 -12 -30 -12 -35 0 -6 461 -10 1240 -10 779 0
+            1240 4 1240 10 0 5 -5 21 -12 35 l-11 25 -1217 0 -1217 0 -11 -25z" id="sun"></path>
+            <path d="M5260 2984 c-6 -14 -10 -27 -10 -30 0 -2 590 -4 1310 -4 721 0 1310
+            2 1310 4 0 3 -4 16 -10 30 l-10 26 -1290 0 -1290 0 -10 -26z" id="sun"></path>
+            <path d="M5430 2889 c-17 -5 -3 -8 45 -9 39 -1 95 -5 125 -10 32 -4 -111 -8
+            -345 -9 -239 -2 -389 -6 -372 -11 16 -5 209 -12 430 -17 281 -5 372 -10 302
+            -14 -55 -4 -334 -4 -620 -2 -286 2 -572 0 -635 -4 l-115 -9 180 -8 c100 -5
+            484 -5 865 0 377 5 1101 9 1610 8 509 -1 887 2 840 6 -47 5 -206 9 -355 9
+            -178 1 -265 5 -255 11 9 6 329 10 850 11 459 0 844 4 855 8 40 16 -167 21
+            -930 22 -429 1 -754 5 -723 8 120 13 63 21 -149 21 -280 0 -514 -11 -458 -21
+            22 -5 70 -8 108 -8 37 -1 67 -5 67 -9 0 -11 -238 -22 -430 -21 -149 1 -144 6
+            25 25 l70 7 -50 8 c-68 10 -904 17 -935 8z" id="sun"></path>
+            <path d="M6108 2783 c-60 -2 -108 -7 -108 -11 0 -4 17 -15 38 -24 37 -18 36
+            -18 -108 -13 -80 3 -197 10 -260 15 -120 12 -1213 4 -1340 -9 -126 -13 203
+            -21 783 -20 306 1 560 -1 564 -4 11 -12 -2 -17 -68 -24 l-64 -7 50 -7 c50 -7
+            1795 8 1803 15 2 2 -49 7 -113 11 -64 4 -113 10 -110 13 3 4 272 10 598 14
+            326 4 610 12 632 16 l40 9 -47 7 c-47 8 -1513 0 -1718 -9 -120 -5 -122 0 -5
+            12 l80 8 -120 6 c-124 6 -340 7 -527 2z" id="sun"></path>
+            <path d="M5250 2643 c-154 -4 -168 -6 -150 -28 7 -8 11 -15 9 -16 -2 0 -167
+            -4 -366 -8 -234 -4 -366 -10 -373 -17 -13 -13 277 -24 644 -25 251 0 334 -11
+            176 -23 -144 -11 -262 -26 -279 -36 -10 -6 489 -9 1339 -7 1334 2 1437 4 1374
+            32 -11 5 -380 11 -821 15 -561 4 -806 9 -814 17 -13 13 202 20 866 28 615 8
+            1078 31 1139 55 12 5 -510 9 -1160 9 -649 1 -1241 3 -1315 5 -74 1 -195 1
+            -269 -1z" id="sun"></path>
+            <path d="M5150 2410 c-234 -4 -441 -11 -460 -15 -35 -8 -35 -8 -10 -18 16 -7
+            232 -12 595 -15 346 -3 556 -8 535 -14 -40 -9 -543 -27 -794 -28 -108 0 -167
+            -3 -160 -10 5 -5 246 -10 609 -12 471 -3 607 -6 633 -17 17 -7 32 -17 32 -22
+            0 -12 -353 -11 -684 2 -283 11 -326 9 -306 -16 18 -22 4 -33 -48 -41 -26 -4
+            -56 -10 -67 -14 -25 -9 7 -14 230 -35 270 -26 304 -37 203 -70 -29 -10 -57
+            -21 -61 -25 -12 -11 111 -20 272 -20 79 0 142 -3 139 -6 -3 -3 -85 -14 -183
+            -25 -194 -21 -237 -29 -242 -46 -6 -17 85 -41 202 -52 158 -16 484 -24 581
+            -15 l89 8 -65 7 c-36 4 -105 7 -155 8 -49 1 -128 4 -174 8 -206 16 13 24 853
+            33 858 9 1258 21 1396 40 36 5 69 10 74 10 6 0 6 4 0 10 -13 13 -182 26 -569
+            45 -428 21 -726 40 -1245 80 -245 19 -452 35 -459 35 -12 0 -12 3 -3 12 10 10
+            132 11 535 8 933 -9 2380 -5 2412 7 48 16 -155 21 -1265 33 -1106 11 -1347 17
+            -1331 33 7 7 342 13 988 19 1324 10 1747 24 1598 52 -20 4 -508 4 -1083 0
+            -1008 -7 -1219 -4 -1162 18 20 7 356 21 740 29 l75 2 -50 8 c-69 12 -1696 19
+            -2215 9z" id="sun"></path>
+            </g>
+            </svg>
+
+            </div>
+            </div>
+        </section>
+
+        <!-- Final Section --><section class="final-section">
+            <div class="final-signature">
+                Shayri For You✨
+            </div>
+            <div class="final-message">
+                Zaroor tumko kisine dil se pukara hoga, <br>Ek baar to chand ne bhi tumko nihara hoga, <br>Mayus hue honge sitare bhi us din, <br>Khuda ne jab Zamin par tumko utara hoga. 🎉✨
+            </div>
+            <div class="final-signature">
+                Once again Janam Din Mubarak With love and best wishes 💖
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Loading Screen Animation
+        window.addEventListener('load', function() {
+            const loadingText = document.querySelector('.loading-text');
+            const loadingProgress = document.querySelector('.loading-progress');
+            const loadingScreen = document.querySelector('.loading-screen');
+
+            anime({
+                targets: loadingText,
+                opacity: [0, 1],
+                translateY: [-30, 0],
+                duration: 1000,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: loadingProgress,
+                width: ['0%', '100%'],
+                duration: 2500,
+                easing: 'easeInOutQuad',
+                complete: function() {
+                    anime({
+                        targets: loadingScreen,
+                        opacity: 0,
+                        duration: 800,
+                        easing: 'easeOutExpo',
+                        complete: function() {
+                            loadingScreen.style.display = 'none';
+                            initializeAnimations();
+                        }
+                    });
+                }
+            });
+        });
+
+        const newColors = ['#FFD700', '#FF69B4', '#8A2BE2', '#00FFFF', '#FF4500']; // New, richer colors for confetti and particles
+
+        function initializeAnimations() {
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 100, density: { enable: true, value_area: 800 } },
+                    color: { value: newColors }, // Uses new colors
+                    shape: { type: ['circle', 'triangle', 'star', 'polygon'] },
+                    opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1 } },
+                    size: { value: 4, random: true, anim: { enable: true, speed: 2 } },
+                    line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.1, width: 1 },
+                    move: {
+                        enable: true,
+                        speed: 1.5,
+                        direction: 'none',
+                        random: true,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: { enable: true, mode: 'grab' },
+                        onclick: { enable: true, mode: 'push' }
+                    },
+                    modes: {
+                        grab: { distance: 200, line_linked: { opacity: 0.3 } },
+                        push: { particles_nb: 4 }
+                    }
+                }
+            });
+
+            // GSAP Animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Section
+            const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+            tl.to('.title-container', {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: 'elastic.out(1, 0.6)'
+            })
+            .to('.subtitle', {
+                opacity: 1,
+                y: 0,
+                duration: 1.2
+            }, '-=0.8')
+            .to('.hero-cta', {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8
+            }, '-=0.6')
+
+            // Countdown Section
+            gsap.to('.countdown-section .section-title', {
+                scrollTrigger: {
+                    trigger: '.countdown-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            gsap.to('.age-display', {
+                scrollTrigger: {
+                    trigger: '.countdown-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                delay: 0.3,
+                ease: 'power3.out'
+            });
+
+            // Animate individual age boxes
+            gsap.utils.toArray('.age-box').forEach((box, i) => {
+                gsap.to(box, {
+                    scrollTrigger: {
+                        trigger: box,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: -20,
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: 'back.out(1.5)'
+                });
+            });
+
+            // Cake Section
+            gsap.to('.cake-section .section-title', {
+                scrollTrigger: {
+                    trigger: '.cake-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            gsap.to('.cake-container', {
+                scrollTrigger: {
+                    trigger: '.cake-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                rotateX: '5deg',
+                rotateY: '-5deg',
+                duration: 1.5,
+                ease: 'elastic.out(1, 0.8)',
+                delay: 0.3
+            });
+
+            gsap.to('.blow-instruction', {
+                scrollTrigger: {
+                    trigger: '.cake-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 1
+            });
+
+            // Memory Cards
+            gsap.to('.memory-section .section-title', {
+                scrollTrigger: {
+                    trigger: '.memory-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            gsap.utils.toArray('.memory-card').forEach((card, i) => {
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: -30,
+                    rotation: Math.random() * 6 - 3,
+                    duration: 1,
+                    delay: (i % 3) * 0.15,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Wishes Section
+            gsap.to('.wishes-section .section-title', {
+                scrollTrigger: {
+                    trigger: '.wishes-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            gsap.utils.toArray('.wish-card').forEach((card, i) => {
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: -30,
+                    rotation: Math.random() * 8 - 4,
+                    duration: 1,
+                    delay: (i % 3) * 0.2,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Celebration Section
+            gsap.to('.celebration-circle', {
+                scrollTrigger: {
+                    trigger: '.celebration-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                scale: 1,
+                duration: 2,
+                ease: 'elastic.out(1, 0.5)'
+            });
+
+            // Final Section
+            gsap.to('.final-message', {
+                scrollTrigger: {
+                    trigger: '.final-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                scale: 1,
+                duration: 1.5,
+                ease: 'back.out(1.3)'
+            });
+
+            gsap.to('.final-signature', {
+                scrollTrigger: {
+                    trigger: '.final-section',
+                    start: 'top 70%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: -20,
+                duration: 1,
+                delay: 0.8
+            });
+
+            // Create sparkles around cake
+            const cakeContainer = document.querySelector('.cake-container');
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'cake-sparkle';
+                const angle = (i / 12) * Math.PI * 2;
+                const radius = 220;
+                sparkle.style.left = `${200 + Math.cos(angle) * radius}px`;
+                sparkle.style.top = `${200 + Math.sin(angle) * radius}px`;
+                sparkle.style.animationDelay = `${i * 0.15}s`;
+                cakeContainer.appendChild(sparkle);
+            }
+        }
+
+        // Create Floating Balloons
+        const balloonColors = ['#FFD700', '#FF69B4', '#8A2BE2', '#00FFFF', '#FF4500']; // New colors for balloons
+        for (let i = 0; i < 20; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.top = Math.random() * 70 + '%';
+            balloon.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)]; // Uses new colors
+            document.querySelector('.hero').appendChild(balloon);
+
+            anime({
+                targets: balloon,
+                translateY: [
+                    { value: -30, duration: 3000 + Math.random() * 2000 },
+                    { value: 0, duration: 3000 + Math.random() * 2000 }
+                ],
+                translateX: [
+                    { value: Math.random() * 60 - 30, duration: 3000 },
+                    { value: 0, duration: 3000 }
+                ],
+                rotate: [
+                    { value: Math.random() * 30 - 15, duration: 3000 },
+                    { value: 0, duration: 3000 }
+                ],
+                loop: true,
+                easing: 'easeInOutSine',
+                delay: Math.random() * 2000
+            });
+
+            balloon.addEventListener('click', function() {
+                anime({
+                    targets: this,
+                    scale: [1, 2, 0],
+                    opacity: [1, 1, 0],
+                    duration: 600,
+                    easing: 'easeOutExpo',
+                    complete: () => {
+                        createConfetti(
+                            this.getBoundingClientRect().left + this.offsetWidth / 2,
+                            this.getBoundingClientRect().top + this.offsetHeight / 2,
+                            50
+                        );
+                        this.remove();
+                    }
+                });
+            });
+        }
+
+        // Candle Logic - REPLACED WITH CLASS-BASED STATE MANAGEMENT
+        const candles = document.querySelectorAll('.candle');
+        let litCandles = candles.length;
+        const totalCandles = litCandles;
+
+        candles.forEach(candle => {
+            const flame = candle.querySelector('.flame');
+
+            // Start every flame lit and flickering
+            flame.style.animation = 'flicker 0.15s infinite';
+
+            candle.addEventListener('click', function() {
+                // Check if the flame is currently lit by checking for the 'blown-out' class
+                const isLit = !flame.classList.contains('blown-out');
+
+                if (isLit) {
+                    // BLOW OUT CANDLE
+
+                    // 1. Instantly stop the flicker animation
+                    flame.style.animation = 'none';
+                    
+                    // 2. Run the visual blow-out animation (shrinking)
+                    anime({
+                        targets: flame,
+                        opacity: [1, 0],
+                        scale: [1, 0],
+                        duration: 400,
+                        easing: 'easeInBack(1.5)',
+                        complete: function() {
+                            // 3. Add the class to lock the state after animation is complete
+                            flame.classList.add('blown-out');
+                            
+                            litCandles--; // Decrease the count
+
+                            if (litCandles === 0) {
+                                createMassiveConfetti();
+                                setTimeout(() => {
+                                    alert('🎉 Wish granted! May all your dreams come true! ✨');
+                                }, 500);
+                            } else {
+                                createConfetti(
+                                    candle.getBoundingClientRect().left + candle.offsetWidth / 2,
+                                    candle.getBoundingClientRect().top,
+                                    30
+                                );
+                            }
+                        }
+                    });
+                    anime({ targets: candle, translateY: [0, -5, 0], duration: 300 });
+
+                } else {
+                    // RE-LIGHT CANDLE
+
+                    // 1. Remove the 'blown-out' class to start the light-up animation
+                    flame.classList.remove('blown-out');
+
+                    // 2. Run the visual light-up animation (expanding)
+                    anime({
+                        targets: flame,
+                        opacity: 1,
+                        scale: [0, 1],
+                        duration: 400,
+                        easing: 'easeOutElastic(1, 0.6)',
+                        complete: function() {
+                            // 3. Re-add the flicker animation after the 'light up' animation finishes
+                            flame.style.animation = 'flicker 0.15s infinite';
+                        }
+                    });
+                    litCandles++;
+                }
+            });
+        });
+
+        // Confetti Functions
+        function createConfetti(x, y, count = 30) {
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = x + 'px';
+                confetti.style.top = y + 'px';
+                confetti.style.background = newColors[Math.floor(Math.random() * newColors.length)]; // Uses new colors
+                confetti.style.width = Math.random() * 12 + 6 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                document.body.appendChild(confetti);
+
+                anime({
+                    targets: confetti,
+                    translateX: (Math.random() - 0.5) * 500,
+                    translateY: Math.random() * 500 + 200,
+                    rotate: Math.random() * 1080,
+                    opacity: [1, 0],
+                    duration: 2500,
+                    easing: 'easeOutCubic',
+                    complete: () => confetti.remove()
+                });
+            }
+        }
+
+        function createMassiveConfetti() {
+            for (let i = 0; i < 250; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-20px';
+                    confetti.style.background = newColors[Math.floor(Math.random() * newColors.length)]; // Uses new colors
+                    confetti.style.width = Math.random() * 18 + 8 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+
+                    anime({
+                        targets: confetti,
+                        translateY: window.innerHeight + 100,
+                        translateX: (Math.random() - 0.5) * 300,
+                        rotate: Math.random() * 1080,
+                        opacity: [1, 0.8, 0],
+                        duration: Math.random() * 2500 + 2500,
+                        easing: 'easeInCubic',
+                        complete: () => confetti.remove()
+                    });
+                }, i * 15);
+            }
+        }
+
+        // Wish Card Interactions
+        document.querySelectorAll('.wish-card').forEach(card => {
+            card.addEventListener('click', function() {
+                anime({
+                    targets: this,
+                    rotateY: [0, 360],
+                    duration: 1000,
+                    easing: 'easeInOutExpo'
+                });
+                createConfetti(
+                    this.getBoundingClientRect().left + this.offsetWidth / 2,
+                    this.getBoundingClientRect().top + this.offsetHeight / 2,
+                    40
+                );
+            });
+        });
+
+        // Memory Card Interactions
+        document.querySelectorAll('.memory-card').forEach(card => {
+            card.addEventListener('click', function() {
+                anime({
+                    targets: this,
+                    scale: [1, 1.05, 1],
+                    duration: 600,
+                    easing: 'easeInOutQuad'
+                });
+                createConfetti(
+                    this.getBoundingClientRect().left + this.offsetWidth / 2,
+                    this.getBoundingClientRect().top + this.offsetHeight / 2,
+                    25
+                );
+            });
+        });
+
+        // Secret Button
+        setTimeout(() => {
+            gsap.to('.secret-button', {
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            anime({
+                targets: '.secret-button',
+                scale: [1, 1.15, 1],
+                duration: 1800,
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+        }, 4000);
+
+        document.querySelector('.secret-button').addEventListener('click', function() {
+            window.open('last.html', '_blank');
+        });
+
+
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            anime({
+                targets: '.surprise-content',
+                scale: [1, 0],
+                opacity: [1, 0],
+                duration: 400,
+                easing: 'easeInExpo',
+                complete: () => {
+                    document.querySelector('.surprise-modal').style.display = 'none';
+                }
+            });
+        });
+
+        // Hero CTA Button
+        document.querySelector('.hero-cta').addEventListener('click', function() {
+            createMassiveConfetti();
+            anime({
+                targets: this,
+                scale: [1, 1.2, 1],
+                duration: 600
+            });
+        });
+
+        // Music Toggle
+        let musicPlaying = false;
+        document.querySelector('.music-toggle').addEventListener('click', function() {
+            musicPlaying = !musicPlaying;
+            this.textContent = musicPlaying ? '🔊' : '🎵';
+            anime({
+                targets: this,
+                rotate: 360,
+                duration: 500
+            });
+        });
+
+        // Parallax Effect (rAF + mobile guard)
+        (function () {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        let ticking = false;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+            // Lighter parallax to reduce compositing work
+            if (!isMobile) {
+                hero.style.transform = `translateY(${scrolled * 0.25}px)`;
+            } else {
+                hero.style.transform = 'none';
+            }
+            ticking = false;
+            });
+        }
+
+        // Passive = true to avoid scroll blocking
+        window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+
+
+        // Konami Code Easter Egg
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                createMassiveConfetti();
+                setTimeout(() => createMassiveConfetti(), 500);
+                setTimeout(() => createMassiveConfetti(), 1000);
+                alert('🌈 ULTIMATE PARTY MODE ACTIVATED! 🎉🎊🎈');
+            }
+        });
+
+        // Cursor Trail
+        let lastX = 0, lastY = 0, throttle = false;
+        document.addEventListener('mousemove', (e) => {
+            if (throttle) return;
+            throttle = true;
+            setTimeout(() => throttle = false, 50);
+
+            if (Math.abs(e.clientX - lastX) > 15 || Math.abs(e.clientY - lastY) > 15) {
+                const trail = document.createElement('div');
+                trail.style.position = 'fixed';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.width = '8px';
+                trail.style.height = '8px';
+                trail.style.borderRadius = '50%';
+                trail.style.background = newColors[Math.floor(Math.random() * newColors.length)]; // Uses new colors
+                trail.style.pointerEvents = 'none';
+                trail.style.zIndex = '9998';
+                trail.style.boxShadow = `0 0 10px ${trail.style.background}`;
+                document.body.appendChild(trail);
+
+                anime({
+                    targets: trail,
+                    scale: [1, 0],
+                    opacity: [0.8, 0],
+                    duration: 1200,
+                    easing: 'easeOutExpo',
+                    complete: () => trail.remove()
+                });
+
+                lastX = e.clientX;
+                lastY = e.clientY;
+            }
+        });
+
+        // Random element shake
+        setInterval(() => {
+            const cards = [...document.querySelectorAll('.wish-card'), ...document.querySelectorAll('.memory-card')];
+            if (cards.length > 0) {
+                const randomCard = cards[Math.floor(Math.random() * cards.length)];
+                anime({
+                    targets: randomCard,
+                    rotate: [0, 3, -3, 0],
+                    duration: 500,
+                    easing: 'easeInOutSine'
+                });
+            }
+        }, 6000);
+
+        console.log('🎉 Happy Birthday! 🎂');
+        console.log('💡 Try the Konami Code: ↑↑↓↓←→←→BA for a surprise!');
+        console.log('🎁 Click the gift button in the corner!');
+        console.log('🎈 Pop the balloons!');
+        console.log('🕯️ Blow out the candles!');
+    </script>
+</body>
+</html>

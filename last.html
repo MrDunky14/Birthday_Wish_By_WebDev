@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css'>
+    <link rel="stylesheet" href="./last.css">
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Special Treasure of Your Smiles</h1>
+        <p>You didn't expected it right but Yes This is My Birthday Gift to You. <br>Wish You the Happiest 18th Birthday with all my heart may the days further be more happier and happier and also problems u never tell anyone get far away from you.<br> This time I only have this to give you unlike the ones I used to surprise you with So Enjoy your special Day it's all yours time live it to the full✨😊💐</p>
+    </section>
+
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./d1.jpg" alt="First Date" class="memory-img">
+            <div class="memory-date">Her Smile Says It All</div>
+            <div class="memory-caption">Sambhaal ke rakha wo phool mera tu</br>Meri shayari mein zaroor raha tu<br>Jo aankhon mein pyaari si duniya basaayi<br>Wo duniya bhi tha tu, wo lamha bhi tha tu ❤️</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d2.jpg" alt="Beach Day" class="memory-img">
+            <div class="memory-date">Together Vibes</div>
+            <div class="memory-caption">Aisa dekha nahi khoobsoorat koyi<br>Jism jaise ajanta ki moorat koyi<br>Jism jaise nigaahon pah jaadu koyi💕</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d3.jpg" alt="Movie Night" class="memory-img">
+            <div class="memory-date">Pretty Soul</div>
+            <div class="memory-caption">चेहरा ik phool ki tarh shaadaab hai<br>चेहरा uska hai ya koyi mahtaab hai<br>चेहरा jaise कली chehra jaise kanwal🌸💖</div>
+        </div>
+
+    </div>
+
+    <section>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide--one">
+            <div>
+            <h2>The Gift that made you smile the most last year</h2>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                Home, Mira Road
+            </p>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide--two">
+            <div>
+            <h2>Eid k din Chaand Si Aap</h2>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                Holiday Cafe, Mira Road
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide--three">
+            <div>
+            <h2>Your Chandni Si Smile on 2nd Beach Trip</h2>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                Girgaon Chowpatty, Charni Road
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide--four">
+            <div>
+            <h2>You in your cutest phase</h2>
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                The Capital Mall, Virar
+            </p>
+            </div>
+        </div>
+
+        <div class="swiper-slide swiper-slide--five">
+            <div>
+            <h2>Your Most loved and awaited gift</h2>
+            <p>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                S.V.P, Mira Road
+            </p>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide--six">
+            <div>
+            <h2>The Cute Celebrity Look of You</h2>
+            <p>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                Thakur Mall, Dahisar
+            </p>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    <section class="final-message">
+        <h2>Some Lines The Birthday Beauty Deserves✨</h2>
+        <p>Kaise batau mai tumhe ?</br>
+        Mere liye tum kon ho?</br>
+        Kaise batau mai tumhe ?</br>
+        Tum dhadkano ka geet ho</br>
+        Tum jeevan ka Sangeet ho</br>
+        Tum zindagi-Tum bandagi </br>
+        Tum roshni-Tum taazgi</br>
+        Tum Har khushi,<br>Tum pyaar ho preet ho manmeet ho</br>
+        Aakho me tum yaado me tum <br>Neendo me tum khawabo me tum </br>
+        Tum ho meri har baat me </br>
+        tum ho meri din raat me</br> 
+        Tum subh me tum shaam me </br>
+        Tum soch me tum kaam me </br>
+        Mere liye pana bhi tum ho</br>
+        Mere liye khona bhi tum</br> 
+        Mere liye hasna bhi tum</br>
+        Mere liye rona bhi tum</br>
+        Aur jagna-sona bhi tum</br>
+        Jau kahi dekhu kahi <br>tum ho waha tum ho wahi</br>
+        Kaise batau mai tumhe?</br> 
+        tum bin to mai kuch bhi nahi</p>
+        <a href="flowers.html" class="goodbye-btn">Until We Meet Again 💝</a>
+    </section>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
+<script src="./last.js"></script>
+</html>
