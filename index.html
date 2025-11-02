@@ -1055,6 +1055,27 @@
             max-width: 100vw;
             overflow: hidden;
         }
+        /* Remove blue focus outline from buttons */
+        button:focus,
+        button:active,
+        .music-toggle:focus,
+        .music-toggle:active,
+        .balloon:focus,
+        .balloon:active,
+        div:focus {
+            outline: none !important;
+        }
+
+        /* Remove tap highlight on mobile */
+        button,
+        .music-toggle,
+        .balloon,
+        .candle {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
 
     </style>
     
@@ -1069,7 +1090,14 @@
 
     <!-- Particles Background --><div id="particles-js"></div>
 
-    <!-- Music Toggle --><div class="music-toggle" title="Toggle Music">🎵</div>
+    <!-- Music Toggle -->
+    <div class="music-toggle" title="Toggle Music">🔇</div>
+
+    <!-- Add this audio element -->
+    <audio id="backgroundMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
 
     <!-- Secret Button --><button class="secret-button" title="Click for a surprise!">🎁</button>
 
@@ -1077,7 +1105,7 @@
         <!-- Hero Section --><section class="hero">
             <div class="title-container">
                 <span class="title-decoration decoration-left">✨</span>
-                <h1 class="title">HAPPY<br>BIRTHDAY!<br>Mahera Bin</h1>
+                <h1 class="title">HAPPY<br>18TH<br>BIRTHDAY!<br>Mahera Bin</h1>
                 <span class="title-decoration decoration-right">🎉</span>
             </div>
             <p class="subtitle">Today is all about YOU! 💖</p>
@@ -1981,20 +2009,6 @@
             window.open('last.html', '_blank');
         });
 
-
-        document.querySelector('.close-modal').addEventListener('click', function() {
-            anime({
-                targets: '.surprise-content',
-                scale: [1, 0],
-                opacity: [1, 0],
-                duration: 400,
-                easing: 'easeInExpo',
-                complete: () => {
-                    document.querySelector('.surprise-modal').style.display = 'none';
-                }
-            });
-        });
-
         // Hero CTA Button
         document.querySelector('.hero-cta').addEventListener('click', function() {
             createMassiveConfetti();
@@ -2005,17 +2019,38 @@
             });
         });
 
-        // Music Toggle
+        // Music Toggle - DIAGNOSTIC VERSION
+        const backgroundMusic = document.getElementById("backgroundMusic");
         let musicPlaying = false;
+
         document.querySelector('.music-toggle').addEventListener('click', function() {
+            console.log('🎵 Music button clicked!');
+            console.log('Audio element:', backgroundMusic);
+            console.log('Audio src:', backgroundMusic ? backgroundMusic.src : 'NO AUDIO ELEMENT');
+            
             musicPlaying = !musicPlaying;
-            this.textContent = musicPlaying ? '🔊' : '🎵';
-            anime({
-                targets: this,
-                rotate: 360,
-                duration: 500
-            });
+            
+            if (musicPlaying) {
+                console.log('Attempting to play...');
+                backgroundMusic.play()
+                    .then(() => {
+                        console.log('✅ Music is now playing!');
+                        this.textContent = '🔊';
+                    })
+                    .catch(error => {
+                        console.log('❌ Playback failed:', error.message);
+                        this.textContent = '❌';
+                        musicPlaying = false;
+                    });
+            } else {
+                backgroundMusic.pause();
+                this.textContent = '🎵';
+                console.log('Music paused');
+            }
+            
+            anime({ targets: this, rotate: '+=360', duration: 500 });
         });
+
 
         // Parallax Effect (rAF + mobile guard)
         (function () {
