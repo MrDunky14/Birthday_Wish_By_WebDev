@@ -78,6 +78,7 @@
             color: white;
             margin-bottom: 30px;
             opacity: 0;
+            text-align: center;
         }
 
         .loading-bar {
@@ -883,7 +884,7 @@
             .wish-card { padding: 35px; }
             .wishes-container { grid-template-columns: 1fr; gap: 30px; }
             .memory-grid { grid-template-columns: 1fr; }
-            .final-message { font-size: 2.0rem; }
+            .final-message { font-size: 1.5rem; }
             .age-box { width: 150px; height: 150px; }
             .age-number { font-size: 3.5rem; }
             .cake { width: 280px; height: 350px; }
@@ -997,14 +998,6 @@
 
         #sun {
         fill: url(#MyGradient);
-        }
-
-        /* Update the existing .flame rule */
-        .flame {
-            /* ... existing properties ... */
-            /* Remove the 'animation' property from here */
-            animation: flicker 0.15s infinite; /* <-- REMOVE THIS LINE */
-            /* ... existing properties ... */
         }
 
         /* ADD THIS NEW RULE to hide the flame */
@@ -1129,7 +1122,7 @@
                     <div class="age-label">Days</div>
                 </div>
                 <div class="age-box">
-                    <div class="age-number">&infin;</div>
+                    <div class="age-number" >&infin;</div>
                     <div class="age-label">Memories</div>
                 </div>
             </div>
@@ -1195,27 +1188,27 @@
             <div class="wishes-container">
                 <div class="wish-card">
                     <span class="wish-icon">🌈</span>
-                    <p class="wish-text">May your year be painted with all the colors of joy, success, and endless adventures!</p>
+                    <p class="wish-text">Apke aakho ki ye kajal jaisi, apki pyari zindagi ko nazar na lage!</p>
                 </div>
                 <div class="wish-card">
                     <span class="wish-icon">✨</span>
-                    <p class="wish-text">Wishing you magical moments and dreams that come true in the most spectacular ways!</p>
+                    <p class="wish-text">Apke otho pr hassi aisi apke chandni raat se chehre pr taaro jaisi lagi rahe!</p>
                 </div>
                 <div class="wish-card">
-                    <span class="wish-icon">🎯</span>
-                    <p class="wish-text">May you hit every goal, exceed every expectation, and celebrate every victory this year!</p>
+                    <span class="wish-icon">🎀 </span>
+                    <p class="wish-text">Aap baarish me bheeg kr sara maza uthao aur apko sardi na ho!</p>
                 </div>
                 <div class="wish-card">
                     <span class="wish-icon">💖</span>
-                    <p class="wish-text">Sending you love, laughter, and happiness multiplied by infinity and beyond!</p>
+                    <p class="wish-text">Heartly wish May your Naseeb be as Beautiful as you!</p>
                 </div>
                 <div class="wish-card">
                     <span class="wish-icon">🌟</span>
-                    <p class="wish-text">Keep shining bright! The world needs your light, your energy, and your amazing spirit!</p>
+                    <p class="wish-text">Jaise raat k adhere me roshni si ho waisi saare sapne apke chamak uthe!</p>
                 </div>
                 <div class="wish-card">
                     <span class="wish-icon">🎊</span>
-                    <p class="wish-text">Here's to 365 days of incredible memories, boundless joy, and unforgettable moments!</p>
+                    <p class="wish-text">Aap jab bhi pehno maathe ki bindi se saree tak sab pyaari lage aap pr!</p>
                 </div>
             </div>
         </section>
@@ -1855,7 +1848,6 @@
                         opacity: [1, 0],
                         scale: [1, 0],
                         duration: 400,
-                        easing: 'easeInBack(1.5)',
                         complete: function() {
                             // 3. Add the class to lock the state after animation is complete
                             flame.classList.add('blown-out');
@@ -1890,7 +1882,6 @@
                         opacity: 1,
                         scale: [0, 1],
                         duration: 400,
-                        easing: 'easeOutElastic(1, 0.6)',
                         complete: function() {
                             // 3. Re-add the flicker animation after the 'light up' animation finishes
                             flame.style.animation = 'flicker 0.15s infinite';
