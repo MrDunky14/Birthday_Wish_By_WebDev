@@ -900,8 +900,6 @@
 
         .container {
         max-width: 100%;
-        padding-left: var(--safe-x);
-        padding-right: var(--safe-x);
         }
 
         .hero {
@@ -1854,17 +1852,19 @@
                             
                             litCandles--; // Decrease the count
 
-                            if (litCandles === 0) {
+                        if (litCandles === 0) {
                                 createMassiveConfetti();
-                                setTimeout(() => {
-                                    alert('🎉 Wish granted! May all your dreams come true! ✨');
-                                }, 500);
-                            } else {
-                                createConfetti(
-                                    candle.getBoundingClientRect().left + candle.offsetWidth / 2,
-                                    candle.getBoundingClientRect().top,
-                                    30
-                                );
+                                // Replace the "Click to blow" text with message
+                                const cakeInstructions = document.querySelector('.blow-instruction');
+                                if (cakeInstructions) {
+                                    cakeInstructions.textContent = '🎉 Wish granted! May all your dreams come true! ✨';
+                                }
+                        } else {
+                            createConfetti(
+                                candle.getBoundingClientRect().left + candle.offsetWidth / 2,
+                                candle.getBoundingClientRect().top,
+                                30
+                            );
                             }
                         }
                     });
