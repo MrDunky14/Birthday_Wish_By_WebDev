@@ -1226,7 +1226,25 @@ body {
   animation-play-state: paused !important;
 }
 
-/*# sourceMappingURL=style.css.map */
+
+#cta-wrapper {
+  position: absolute;
+  /* below the title: adjust if needed to fit your exact font-size/margins */
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  z-index: 1000; /* above overlays */
+  text-align: center;
+}
+
+#cta-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
 </style>
 
@@ -1534,9 +1552,65 @@ body {
 
   <!-- Title -->
   <h1 class="title"><span id="title"></span></h1>
+  <div id="cta-wrapper">
+    <button id="cta-btn" type="button">Play</button>
+    <audio id="audio" src="Birthday_Bakwas.mp3" preload="preload"></audio>
+  </div>
 </body>
 <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_slide.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/clicklove.js"></script>
+<script>
+  (function () {
+    const titleSpan = document.getElementById('title');
+    const cta = document.getElementById('cta-wrapper');
+    if (!titleSpan || !cta) return;
+
+    let timer;
+    const QUIET_MS = 800; // no changes for 0.8s -> assume finished
+
+    const showCTA = () => {
+      cta.style.display = 'block';
+      observer.disconnect();
+    };
+
+    const observer = new MutationObserver(() => {
+      clearTimeout(timer);
+      timer = setTimeout(showCTA, QUIET_MS);
+    });
+
+    observer.observe(titleSpan, { childList: true, characterData: true, subtree: true });
+
+    // Safety: if nothing mutates (e.g., instant text), show after a small delay
+    setTimeout(() => {
+      if (cta.style.display !== 'block' && titleSpan.textContent.trim().length > 0) showCTA();
+    }, 9000);
+  })();
+</script>
+<script>
+  const btn = document.getElementById('cta-btn');
+  const audio = document.getElementById('audio');
+
+  const setLabel = () => {
+    btn.textContent = audio.paused ? 'Play' : 'Pause';
+  };
+
+  setLabel();
+
+  btn.addEventListener('click', async () => {
+    try {
+      if (audio.paused) {
+        await audio.play();   // returns a Promise
+      } else {
+        audio.pause();
+      }
+      setLabel();
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+  audio.addEventListener('ended', setLabel);
+</script>
 
 </html>
 
