@@ -548,10 +548,18 @@
     const cardSound2 = new Audio('./sound2.mp3');
     const cardSound3 = new Audio('./sound3.mp3');
     const cardSound4 = new Audio('./sound4.mp3');
-    // 2. This function accepts ANY audio object
+    // 2. This function now checks the "paused" state
     function playSound(soundObject) {
-        soundObject.currentTime = 0; // Rewind to start
-        soundObject.play();
+        
+        if (soundObject.paused) {
+            // If paused or finished, play it from the start
+            soundObject.currentTime = 0;
+            soundObject.play();
+        } else {
+            // If it's currently playing, stop it and reset
+            soundObject.pause();
+            soundObject.currentTime = 0;
+        }
     }
 </script>
 </html>
