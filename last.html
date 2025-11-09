@@ -548,17 +548,30 @@
     const cardSound2 = new Audio('./sound2.mp3');
     const cardSound3 = new Audio('./sound3.mp3');
     const cardSound4 = new Audio('./sound4.mp3');
-    // 2. This function now checks the "paused" state
-    function playSound(soundObject) {
+    // 2. NEW: Put them all in an array
+    const allSounds = [cardSound1, cardSound2, cardSound3,cardSound4];
+
+    // 3. UPDATED: The function now stops other sounds first
+    function playSound(soundToPlay) {
         
-        if (soundObject.paused) {
-            // If paused or finished, play it from the start
-            soundObject.currentTime = 0;
-            soundObject.play();
+        // --- This is the new part ---
+        // Loop through every sound
+        allSounds.forEach(sound => {
+            // If this sound is NOT the one we want to play,
+            // stop it and reset it.
+            if (sound !== soundToPlay) {
+                sound.pause();
+                sound.currentTime = 0;
+            }
+        });
+        // -----------------------------
+
+        // This is the same toggle logic as before
+        if (soundToPlay.paused) {
+            soundToPlay.play();
         } else {
-            // If it's currently playing, stop it and reset
-            soundObject.pause();
-            soundObject.currentTime = 0;
+            soundToPlay.pause();
+            soundToPlay.currentTime = 0;
         }
     }
 </script>
