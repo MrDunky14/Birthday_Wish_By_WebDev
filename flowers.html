@@ -1272,7 +1272,13 @@ body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 24px;
   text-shadow: 0px 0px 10px white;
+
+  /* Start hidden */
+  opacity: 0;
   
+  /* Add a smooth fade-in effect */
+  transition: opacity 0.5s ease;
+
   /* --- The Magic (Updated) --- */
   /* 1. We have 21 letters. Let's give each a smaller 8-degree turn.
      2. Total arc = 21 * 8deg = 168 degrees.
@@ -1645,6 +1651,20 @@ body {
       if (cta.style.display !== 'block' && titleSpan.textContent.trim().length > 0) showCTA();
     }, 9000);
   })();
+  document.addEventListener("DOMContentLoaded", () => {
+  // Select all the spans inside the container
+  const spans = document.querySelectorAll(".curved-text-container span");
+  
+  // Define the delay for each letter (in milliseconds)
+  const delay = 400;
+
+  spans.forEach((span, index) => {
+    setTimeout(() => {
+      // Set opacity to 1 to make it visible
+      span.style.opacity = 1;
+    }, (index + 1) * delay); // Stagger the delay
+  });
+});
 </script>
 <script>
   const btn = document.getElementById('cta-btn');
