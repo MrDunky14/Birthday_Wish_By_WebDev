@@ -1245,13 +1245,49 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+.curved-text-container {
+  /* This holds all the letters */
+  position: absolute;
+  top: 68%; /* Position it below the main title */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001; /* Bring it to the front */
 
+  /* Set the size of the circle */
+  width: 300px;
+  height: 150px; /* Half the width for a semicircle */
+}
+
+.curved-text-container span {
+  /* Position all letters at the center of the container */
+  position: absolute;
+  left: 50%;
+  top: 0;
+  
+  /* Set the origin point for the rotation to be the center-bottom */
+  transform-origin: bottom center;
+
+  /* Text styling (matches your title) */
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  text-shadow: 0px 0px 10px white;
+  
+  /* --- The Magic (Updated) --- */
+  /* 1. We have 21 letters. Let's give each a smaller 8-degree turn.
+     2. Total arc = 21 * 8deg = 168 degrees.
+     3. We shift it left by half of that (84deg) plus a bit more (4deg)
+        to center it = -88deg
+  */
+  transform: 
+    rotate(calc( (var(--i) * 8deg) - 88deg )) 
+    translateY(-150px);
+}
 </style>
 
 <body class="not-loaded">
   <!-- Background -->
   <div class="night"></div>
-
   <!-- Flower -->
   <div class="flowers">
     <div class="flower flower--1">
@@ -1549,13 +1585,36 @@ body {
       </div>
     </div>
   </div>
-
+  
   <!-- Title -->
   <h1 class="title"><span id="title"></span></h1>
   <div id="cta-wrapper">
     <p style="color: #fff; font-size: 20px;">Put your headphones to get back in 16 Nov 2024!<br><br></p>
     <button id="cta-btn" type="button">Play</button>
     <audio id="audio" src="Birthday_Bakwas.mp3" preload="preload"></audio>
+  </div>
+  <div class="curved-text-container">
+    <span style="--i:1">I</span>
+    <span style="--i:2">&nbsp;</span>
+    <span style="--i:3">k</span>
+    <span style="--i:4">n</span>
+    <span style="--i:5">o</span>
+    <span style="--i:6">w</span>
+    <span style="--i:7">&nbsp;</span>
+    <span style="--i:8">U</span>
+    <span style="--i:9">&nbsp;</span>
+    <span style="--i:10">L</span>
+    <span style="--i:11">o</span>
+    <span style="--i:12">v</span>
+    <span style="--i:13">e</span>
+    <span style="--i:14">&nbsp;</span>
+    <span style="--i:15">F</span>
+    <span style="--i:16">l</span>
+    <span style="--i:17">o</span>
+    <span style="--i:18">w</span>
+    <span style="--i:19">e</span>
+    <span style="--i:20">r</span>
+    <span style="--i:21">s</span>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/gh/zyoushuo/Blog/hexo/js/mouse_slide.js"></script>
